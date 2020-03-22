@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  var object = {
+    name: 'tango',
+    age: 23,
+    __proto__: {
+      hobby: 'coding'
+    }
+  }
+
+
+  function selfDefine (obj, props) {
+    var own = []
+    var protos = []
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        own.push(prop)
+      }else{
+        protos.push(prop)
+      }
+    }
+    console.log('own', own);
+    console.log('protos', protos);
+    return own.includes(props)
+  }
+
+  res = selfDefine(object, 'name')
+  console.log(res);
+  
+</script>
+
+</html>
