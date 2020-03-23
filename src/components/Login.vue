@@ -5,19 +5,19 @@
         <img src="~assets/logo.png" alt="" />
       </div>
       <el-form
-        label-width="0px"
+        label-width="70px"
         class="login-form"
         :model="loginForm"
         :rules="loginFromRules"
         ref="loginForm"
       >
-        <el-form-item class="item" prop="username">
+        <el-form-item prop="username">
           <el-input
             prefix-icon="iconfont icon-user"
             v-model="loginForm.username"
           ></el-input>
         </el-form-item>
-        <el-form-item class="item" prop="password">
+        <el-form-item prop="password">
           <el-input
             prefix-icon="iconfont icon-3702mima"
             v-model="loginForm.password"
@@ -135,7 +135,7 @@ export default {
   justify-content: flex-end;
   margin-top: -15px;
 
-  .item {
+  .el-input {
     width: 350px;
   }
 }
