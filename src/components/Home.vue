@@ -35,7 +35,7 @@
               v-for="subItem in item.children"
               :key="subItem.id"
             >
-              <template slot="title">
+              <template #title>
                 <i class="el-icon-menu"></i>
                 <span>{{ subItem.authName }}</span>
               </template>
@@ -83,7 +83,7 @@ export default {
       } = await this.$http.get('menus')
       if (meta.status !== 200) return this.$msg.error(meta.msg)
       this.menusList = data
-      console.log(data)
+      console.log('menusList', data)
     },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.home-container {
+.el-container {
   height: 100%;
 }
 .el-header {

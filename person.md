@@ -97,3 +97,9 @@ Vue.prototype.$http = axios
 * 添加用户
 * 修改用户信息
 * 删除用户
+
+#### 3. Rights
+* 权限列表 rights
+* 角色列表 roles
+* 权限分配
+* 用户角色分配    

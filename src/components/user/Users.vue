@@ -23,7 +23,7 @@
           </el-input>
         </el-col>
         <el-col :span="5">
-          <el-button type="primary" @click="dialogVisible = true"
+          <el-button type="primary" @click="addDialogVisible = true"
             >添加用户</el-button
           >
         </el-col>
@@ -68,6 +68,7 @@
                 type="warning"
                 icon="el-icon-share"
                 size="mini"
+                @click="showRoleDialog(data.row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -88,14 +89,14 @@
 
     <el-dialog
       title="用户添加"
-      :visible.sync="dialogVisible"
+      :visible.sync="addDialogVisible"
       width="50%"
       @close="addDialogClose"
     >
       <el-form
         :model="addForm"
         :rules="addFormRules"
-        ref="addForm"
+        ref="addFormRef"
         label-width="70px"
       >
         <el-form-item label="用户名" prop="username">
@@ -112,7 +113,7 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button @click="addDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="addUser">确 定</el-button>
       </span>
     </el-dialog>
@@ -141,6 +142,25 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="editUser">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="权限分配" :visible.sync="roleDialogVisible" width="50%">
+      <p>当前的用户： {{ info.username }}</p>
+      <p>当前的角色： {{ info.role_name }}</p>
+      角色分配：
+      <el-select v-model="roleId" placeholder="请选择">
+        <el-option
+          v-for="item in roleList"
+          :key="item.id"
+          :label="item.roleName"
+          :value="item.id"
+        >
+        </el-option>
+      </el-select>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="roleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="roleHandle">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -174,8 +194,12 @@ export default {
       },
       usersList: [],
       total: 0,
-      dialogVisible: false,
+      addDialogVisible: false,
       editDialogVisible: false,
+      roleDialogVisible: false,
+      info: {},
+      roleList: [],
+      roleId: null,
       addForm: {
         username: '',
         password: '',
@@ -254,10 +278,10 @@ export default {
     },
     addDialogClose() {
       // console.log('---')
-      this.$refs.addForm.resetFields()
+      this.$refs.addFormRef.resetFields()
     },
     addUser() {
-      this.$refs.addForm.validate(async valid => {
+      this.$refs.addFormRef.validate(async valid => {
         if (!valid) return false
         const {
           data: { meta }
@@ -265,7 +289,7 @@ export default {
 
         if (meta.status !== 201) return this.$msg.error(meta.msg)
         this.$msg.success(meta.msg)
-        this.dialogVisible = false
+        this.addDialogVisible = false
         this.getUsersList()
       })
     },
@@ -301,6 +325,29 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    showRoleDialog(info) {
+      this.info = info
+      this.getRoleList()
+      this.roleDialogVisible = !this.roleDialogVisible
+    },
+    async getRoleList() {
+      const {
+        data: { data, meta }
+      } = await this.$http.get('roles')
+      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      this.roleList = data
+    },
+    async roleHandle() {
+      const {
+        data: { meta }
+      } = await this.$http.put(`users/${this.info.id}/role`, {
+        rid: this.roleId
+      })
+      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      this.$msg.success(meta.msg)
+      this.getUsersList()
+      this.roleDialogVisible = false
     }
   },
   filters: {
@@ -310,13 +357,18 @@ export default {
     }
   },
   watch: {
-    dialogVisible: function(value) {
+    addDialogVisible: function(value) {
       // if (!value) this.$refs.addForm.resetFields()
     },
     editDialogVisible: function(value) {
       if (!value) {
         this.$refs.editFormRef.resetFields()
-        this.$refs.editFormRef.clearValidate()
+      }
+    },
+    roleDialogVisible: function(value) {
+      if (!value) {
+        // this.info = {}
+        this.roleId = null
       }
     }
   }
