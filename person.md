@@ -103,3 +103,6 @@ Vue.prototype.$http = axios
 * 角色列表 roles
 * 权限分配
 * 用户角色分配    
+
+#### 4. goods 
+* 商品分类
