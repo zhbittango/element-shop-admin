@@ -61,7 +61,7 @@
             type="danger"
             icon="el-icon-delete"
             size="mini"
-            @click="deleteById(data.row.id)"
+            @click="deleteById(data.row.cat_id)"
           >
             删除
           </el-button>
@@ -123,7 +123,7 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="editFormHandel">确 定</el-button>
+          <el-button type="primary" @click="editFormHandle">确 定</el-button>
         </span>
       </el-dialog>
     </el-card>
@@ -257,7 +257,7 @@ export default {
       this.editForm = info
       // console.log(info)
     },
-    editFormHandel() {
+    editFormHandle() {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return false
         const {
@@ -265,10 +265,30 @@ export default {
         } = await this.$http.put('categories/' + this.editForm.cat_id, this.editForm)
 
         if (meta.status !== 200) return this.$msg.error(meta.msg)
-        this.$msg.success('修改成功')
+        this.$msg.success(meta.msg)
         this.editDialogVisible = false
         this.getList()
       })
+    },
+    deleteById(id) {
+      this.$confirm('此操作将永久删除该分类, 是否继续?', '角色删除', {
+        confirmButtonText: '确 定',
+        cancelButtonText: '取 消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.$http.delete('categories/' + id).then(({ data: { meta } }) => {
+            if (meta.status !== 200) return this.$msg.error(meta.msg)
+            this.$msg.success(meta.msg)
+            this.getList()
+          })
+        })
+        .catch(() => {
+          this.$msg({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   },
   watch: {

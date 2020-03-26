@@ -132,7 +132,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editFormHandel">确 定</el-button>
+        <el-button type="primary" @click="editFormHandle">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -221,7 +221,7 @@ export default {
       this.editForm = info
       // console.log(info)
     },
-    editFormHandel() {
+    editFormHandle() {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return false
         const {

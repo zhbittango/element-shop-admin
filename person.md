@@ -106,3 +106,5 @@ Vue.prototype.$http = axios
 
 #### 4. goods 
 * 商品分类
+* 商品参数
+* 商品列表 

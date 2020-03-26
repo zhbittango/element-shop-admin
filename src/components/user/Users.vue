@@ -251,8 +251,8 @@ export default {
       // console.log(data)
     },
     editDialog(info) {
-      this.editDialogVisible = !this.editDialogVisible
       this.editForm = info
+      this.editDialogVisible = !this.editDialogVisible
       console.log(info)
     },
     handleSizeChange(newSize) {
@@ -261,7 +261,7 @@ export default {
       this.getUsersList()
     },
     handleCurrentChange(newPage) {
-      console.log(newPage)
+      // console.log(newPage)
       this.queryInfo.pagenum = newPage
       this.getUsersList()
     },
@@ -362,7 +362,10 @@ export default {
     },
     editDialogVisible: function(value) {
       if (!value) {
-        this.$refs.editFormRef.resetFields()
+        // this.$refs.editFormRef.resetFields()
+        this.editForm = {}
+        this.getUsersList()
+        // console.log('edit', this.editForm)
       }
     },
     roleDialogVisible: function(value) {

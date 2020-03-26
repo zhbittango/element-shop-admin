@@ -83,7 +83,7 @@ export default {
       } = await this.$http.get('menus')
       if (meta.status !== 200) return this.$msg.error(meta.msg)
       this.menusList = data
-      console.log('menusList', data)
+      // console.log('menusList', data)
     },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
