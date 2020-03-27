@@ -444,6 +444,6 @@ export default {
   margin: 15px 0;
 }
 .el-tag {
-  margin: 0 10px;
+  margin: 10px 15px 10px 0;
 }
 </style>

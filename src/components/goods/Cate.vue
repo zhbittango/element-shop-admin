@@ -280,6 +280,7 @@ export default {
           this.$http.delete('categories/' + id).then(({ data: { meta } }) => {
             if (meta.status !== 200) return this.$msg.error(meta.msg)
             this.$msg.success(meta.msg)
+            // this.queryInfo.pagenum = 1
             this.getList()
           })
         })

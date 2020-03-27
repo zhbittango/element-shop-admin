@@ -106,5 +106,29 @@ Vue.prototype.$http = axios
 
 #### 4. goods 
 * 商品分类
+* MessageBox,
+  * Tag,
+  * Tree,
+  * Select,
+  * Option,
+  * Cascader
+  * vue-table-with-tree-grid --save
 * 商品参数
+  * 
 * 商品列表 
+  * Alert,
+  * Tabs,
+  * TabPane,
+  * Steps,
+  * Step,
+  * Checkbox,
+  * CheckboxGroup,
+  * Upload
+  * vue-quill-editor --save
+  * lodash
+  * 对象拷贝
+    * 浅拷贝 obj1 = {...obj}
+    * 深拷贝 
+      * lodash
+      * obj1 = JSON.parse(JSON.stringify(obj))
+      * 递归

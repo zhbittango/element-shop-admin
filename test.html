@@ -10,6 +10,7 @@
       width: 300px;
       border: 1px solid;
     }
+
     .container {
       border: 1px solid;
     }
@@ -34,13 +35,13 @@
   }
 
 
-  function selfDefine (obj, props) {
+  function selfDefine(obj, props) {
     var own = []
     var protos = []
     for (var prop in obj) {
       if (obj.hasOwnProperty(prop)) {
         own.push(prop)
-      }else{
+      } else {
         protos.push(prop)
       }
     }
@@ -51,7 +52,38 @@
 
   res = selfDefine(object, 'name')
   console.log(res);
-  
+
+  obj1 = {
+    arr: [{
+        name: 'tagno'
+      },
+      {
+        name: 'ngota'
+      }
+    ],
+    age: 12,
+    hobby: {
+      a: '11',
+      b: '22'
+    }
+  }
+
+  const obj2 = obj1
+  const obj3 = {
+    ...obj1
+  }
+  const obj4 = JSON.parse(JSON.stringify(obj1))
+
+  obj1.arr[0].name = 'ngota'
+  obj1.age = 25
+  obj1.hobby.a = '33'
+  console.log("obj1", obj1)
+
+  console.log("=", obj2)
+
+  console.log("...", obj3)
+
+  console.log("json", obj4)
 </script>
 
 </html>

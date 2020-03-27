@@ -18,7 +18,7 @@
           :collapse="isCollapse"
           :collapse-transition="false"
           router
-          :default-active="this.$route.path"
+          :default-active="activePath"
         >
           <el-submenu
             :index="item.id + ''"
@@ -34,6 +34,7 @@
               :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
+               @click="saveActivePath('/' + subItem.path)"
             >
               <template #title>
                 <i class="el-icon-menu"></i>
@@ -62,11 +63,15 @@ export default {
         102: 'iconfont icon-danju',
         145: 'iconfont icon-baobiao'
       },
-      isCollapse: false
+      isCollapse: false,
+      activePath: null
     }
   },
   created() {
     this.getMenusList()
+  },
+  mounted() {
+    this.activePath = window.sessionStorage.getItem('path')
   },
   methods: {
     logout() {
@@ -87,6 +92,10 @@ export default {
     },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
+    },
+    saveActivePath(path) {
+      window.sessionStorage.setItem('path', path)
+      this.activePath = path
     }
   }
 }
@@ -95,6 +104,7 @@ export default {
 <style lang="less" scoped>
 .el-container {
   height: 100%;
+  overflow: hidden;
 }
 .el-header {
   background: #070f11;

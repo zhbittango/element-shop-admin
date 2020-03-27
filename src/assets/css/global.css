@@ -13,6 +13,7 @@ body,
 }
 
 .el-card {
+  /* background-color: #eee !important; */
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -39,4 +40,20 @@ body,
 
 .el-cascader-panel {
   height: 200px;
+}
+
+.el-step__head {
+  margin: 15px 0 5px 0;
+}
+
+.el-step__title {
+  font-size: 13px !important;
+}
+
+.el-tabs {
+  margin-top: 15px;
+}
+
+.ql-editor {
+  min-height: 300px;
 }
