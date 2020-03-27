@@ -129,6 +129,10 @@ Vue.prototype.$http = axios
   * 对象拷贝
     * 浅拷贝 obj1 = {...obj}
     * 深拷贝 
-      * lodash
+      * lodash 可对方法进行拷贝
       * obj1 = JSON.parse(JSON.stringify(obj))
       * 递归
+
+## 优化部署
+
+* [npm镜像](https://www.cnblogs.com/cythia/p/10985080.html)
