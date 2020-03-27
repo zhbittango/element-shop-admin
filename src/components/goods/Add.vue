@@ -314,7 +314,7 @@ export default {
         } = await this.$http.post('goods', addForm)
         if (meta.status !== 201) return this.$msg.error(meta.msg)
         this.$msg.success(meta.msg)
-        // this.$router.push('/goods')
+        this.$router.push('/goods')
       })
     }
   }
