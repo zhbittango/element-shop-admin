@@ -136,3 +136,24 @@ Vue.prototype.$http = axios
 ## 优化部署
 
 * [npm镜像](https://www.cnblogs.com/cythia/p/10985080.html)
+* nprogress
+  ```
+  import NProgress from 'nprogress'
+  import 'nprogress/nprogress.css'
+  axios.interceptors.request.use(config => {
+    config.headers.Authorization = window.sessionStorage.getItem('token')
+    NProgress.start()
+    return config
+  })
+
+  axios.interceptors.response.use(config => {
+    NProgress.done()
+    return config
+  })
+  ```
+* transform-remove-console 删除打印
+* vue.config.js 配置
+  * [x] chainwebpack
+    * [配置别名](https://www.jianshu.com/p/e4716e5bc8bb) 
+  * configurewebpack
+  * '@babel/plugin-syntax-dynamic-import' 路由分组懒加载

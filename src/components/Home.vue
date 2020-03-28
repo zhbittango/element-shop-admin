@@ -76,7 +76,7 @@ export default {
   methods: {
     logout() {
       window.sessionStorage.clear()
-      this.$msg.success({
+      this.$message.success({
         message: '退出登录成功',
         duration: 1000
       })
@@ -86,9 +86,9 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('menus')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.menusList = data
-      // console.log('menusList', data)
+      console.log('menusList', data)
     },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse

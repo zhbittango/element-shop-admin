@@ -214,7 +214,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('categories')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data)
 
       this.cascaderList = data
@@ -222,20 +222,20 @@ export default {
     cascaderChange() {
       if (this.addForm.goods_cat.length !== 3) {
         this.addForm.goods_cat = []
-        this.$msg.warning('请选中商品的三级分类')
+        this.$message.warning('请选中商品的三级分类')
       }
     },
     leaveBefore(activeName, oldActiveName) {
       // console.log(activeName, oldActiveName)
 
       // if (+activeName - +oldActiveName !== 1) {
-      //   this.$msg.warning('请按步骤点击')
+      //   this.$message.warning('请按步骤点击')
       //   return false
       // }
 
       if (oldActiveName === '0') {
         if (this.addForm.goods_cat.length !== 3) {
-          this.$msg.error('请选中商品的三级分类')
+          this.$message.error('请选中商品的三级分类')
           return false
         }
       }
@@ -247,7 +247,7 @@ export default {
         } = await this.$http.get(`categories/${this.selectedId}/attributes`, {
           params: { sel: 'many' }
         })
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
         data.forEach(item => {
           item.attr_vals = item.attr_vals ? item.attr_vals.split(',') : []
         })
@@ -259,7 +259,7 @@ export default {
         } = await this.$http.get(`categories/${this.selectedId}/attributes`, {
           params: { sel: 'only' }
         })
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
         this.onlyData = data
         // console.log(data)
       }
@@ -281,14 +281,14 @@ export default {
       // console.log(response)
 
       const { data, meta } = response
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.addForm.pics.push({ pic: data.tmp_path })
-      this.$msg.success(meta.msg)
+      this.$message.success(meta.msg)
       // console.log(this.addForm)
     },
     addFormHandle() {
       this.$refs.addFormRef.validate(async valid => {
-        if (!valid) return this.$msg.error('请填写必要的表单项')
+        if (!valid) return this.$message.error('请填写必要的表单项')
         this.manyData.forEach(item => {
           const attrs = {
             attr_id: item.attr_id,
@@ -312,8 +312,8 @@ export default {
         const {
           data: { meta }
         } = await this.$http.post('goods', addForm)
-        if (meta.status !== 201) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 201) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.$router.push('/goods')
       })
     }

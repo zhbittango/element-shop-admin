@@ -45,9 +45,9 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('rights/list')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.rightsList = data
-      // this.$msg.success(meta.msg)
+      // this.$message.success(meta.msg)
     }
   }
 }

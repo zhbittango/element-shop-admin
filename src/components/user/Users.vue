@@ -245,7 +245,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('users', { params: this.queryInfo })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.usersList = data.users
       this.total = data.total
       // console.log(data)
@@ -272,9 +272,9 @@ export default {
       } = await this.$http.put(`users/${info.id}/state/${info.mg_state}`)
       if (meta.status !== 200) {
         info.mg_state = !info.mg_state
-        this.$msg.error(meta.msg)
+        this.$message.error(meta.msg)
       }
-      this.$msg.success(meta.msg)
+      this.$message.success(meta.msg)
     },
     addDialogClose() {
       // console.log('---')
@@ -287,8 +287,8 @@ export default {
           data: { meta }
         } = await this.$http.post('users', this.addForm)
 
-        if (meta.status !== 201) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 201) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.addDialogVisible = false
         this.getUsersList()
       })
@@ -300,8 +300,8 @@ export default {
           data: { meta }
         } = await this.$http.put('users/' + this.editForm.id, this.editForm)
 
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.editDialogVisible = false
         this.getUsersList()
       })
@@ -314,13 +314,13 @@ export default {
       })
         .then(() => {
           this.$http.delete('users/' + id).then(({ data: { meta } }) => {
-            if (meta.status !== 200) return this.$msg.error(meta.msg)
-            this.$msg.success(meta.msg)
+            if (meta.status !== 200) return this.$message.error(meta.msg)
+            this.$message.success(meta.msg)
             this.getUsersList()
           })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })
@@ -335,7 +335,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('roles')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.roleList = data
     },
     async roleHandle() {
@@ -344,8 +344,8 @@ export default {
       } = await this.$http.put(`users/${this.info.id}/role`, {
         rid: this.roleId
       })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
-      this.$msg.success(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
+      this.$message.success(meta.msg)
       this.getUsersList()
       this.roleDialogVisible = false
     }

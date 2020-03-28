@@ -102,7 +102,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('goods', { params: this.queryInfo })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data, meta)
 
       this.list = data.goods
@@ -133,13 +133,13 @@ export default {
       })
         .then(() => {
           this.$http.delete('goods/' + id).then(({ data: { meta } }) => {
-            if (meta.status !== 200) return this.$msg.error(meta.msg)
-            this.$msg.success(meta.msg)
+            if (meta.status !== 200) return this.$message.error(meta.msg)
+            this.$message.success(meta.msg)
             this.getList()
           })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })

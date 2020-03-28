@@ -261,7 +261,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('categories')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data)
 
       this.cascaderList = data
@@ -278,7 +278,7 @@ export default {
       if (this.selected.length !== 3) {
         this.selected = []
         this.tableData = []
-        this.$msg.warning('请选中商品的三级分类')
+        this.$message.warning('请选中商品的三级分类')
         this.isDisabled = true
       } else {
         this.isDisabled = false
@@ -289,7 +289,7 @@ export default {
         } = await this.$http.get(`categories/${this.selectedId}/attributes`, {
           params: { sel: this.activeName }
         })
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
         // if (this.activeName === 'only') {
         //   this.onlyTableData = data
         // } else {
@@ -317,8 +317,8 @@ export default {
         })
         console.log(meta)
 
-        if (meta.status !== 201) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 201) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.addDialogVisible = false
         this.getParamsData()
       })
@@ -332,7 +332,7 @@ export default {
         `categories/${info.cat_id}/attributes/${info.attr_id}`,
         { params: info }
       )
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data)
 
       this.editForm = data
@@ -350,8 +350,8 @@ export default {
         )
         // console.log(data)
 
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.editDialogVisible = false
         this.getParamsData()
       })
@@ -366,13 +366,13 @@ export default {
           this.$http
             .delete(`categories/${this.selectedId}/attributes/${id}`)
             .then(({ data: { meta } }) => {
-              if (meta.status !== 200) return this.$msg.error(meta.msg)
-              this.$msg.success(meta.msg)
+              if (meta.status !== 200) return this.$message.error(meta.msg)
+              this.$message.success(meta.msg)
               this.getParamsData()
             })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })
@@ -418,9 +418,9 @@ export default {
       )
       if (meta.status !== 200) {
         row.attr_vals.pop()
-        this.$msg.error(meta.msg)
+        this.$message.error(meta.msg)
       }
-      this.$msg.success(meta.msg)
+      this.$message.success(meta.msg)
     }
   },
   watch: {

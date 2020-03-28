@@ -74,9 +74,9 @@ export default {
           data: { data, meta }
         } = await this.$http.post('login', this.loginForm)
         console.log(data, meta)
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
         else {
-          this.$msg.success(meta.msg)
+          this.$message.success(meta.msg)
           window.sessionStorage.setItem('token', data.token)
           this.$router.push('/home')
         }

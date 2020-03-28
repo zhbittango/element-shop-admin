@@ -161,7 +161,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('orders', { params: this.queryInfo })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data, meta)
 
       this.list = data.goods
@@ -191,8 +191,8 @@ export default {
         //   data: { meta }
         // } = await this.$http.post('roles', this.addForm)
 
-        // if (meta.status !== 201) return this.$msg.error(meta.msg)
-        // this.$msg.success(meta.msg)
+        // if (meta.status !== 201) return this.$message.error(meta.msg)
+        // this.$message.success(meta.msg)
         // this.addDialogVisible = false
         // this.getList()
       })
@@ -201,7 +201,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('/kuaidi/1106975712662')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.showData = data
       this.showDialogVisible = true
     }

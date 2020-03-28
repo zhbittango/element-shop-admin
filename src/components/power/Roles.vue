@@ -200,7 +200,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('roles')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.list = data
     },
     addFormHandle() {
@@ -210,8 +210,8 @@ export default {
           data: { meta }
         } = await this.$http.post('roles', this.addForm)
 
-        if (meta.status !== 201) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 201) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.addDialogVisible = false
         this.getList()
       })
@@ -228,8 +228,8 @@ export default {
           data: { meta }
         } = await this.$http.put('roles/' + this.editForm.id, this.editForm)
 
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
-        this.$msg.success('修改成功')
+        if (meta.status !== 200) return this.$message.error(meta.msg)
+        this.$message.success('修改成功')
         this.editDialogVisible = false
         this.getList()
       })
@@ -242,13 +242,13 @@ export default {
       })
         .then(() => {
           this.$http.delete('roles/' + id).then(({ data: { meta } }) => {
-            if (meta.status !== 200) return this.$msg.error(meta.msg)
-            this.$msg.success(meta.msg)
+            if (meta.status !== 200) return this.$message.error(meta.msg)
+            this.$message.success(meta.msg)
             this.getList()
           })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })
@@ -264,14 +264,14 @@ export default {
           this.$http
             .delete(`roles/${role.id}}/rights/${id}`)
             .then(({ data: { data, meta } }) => {
-              if (meta.status !== 200) return this.$msg.error(meta.msg)
-              this.$msg.success(meta.msg)
+              if (meta.status !== 200) return this.$message.error(meta.msg)
+              this.$message.success(meta.msg)
               // this.getList()
               role.children = data
             })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })
@@ -291,7 +291,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('rights/tree')
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       this.rightsList = data
     },
     getHasChecked(node, arr) {
@@ -313,8 +313,8 @@ export default {
         rids
       })
 
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
-      this.$msg.success(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
+      this.$message.success(meta.msg)
       this.showRightsDialogVisible = false
       this.getList()
     }

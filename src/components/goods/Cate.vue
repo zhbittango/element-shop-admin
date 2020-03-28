@@ -200,7 +200,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('categories', { params: this.queryInfo })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
 
       this.list = data.result
       // console.log(this.list)
@@ -224,7 +224,7 @@ export default {
       const {
         data: { data, meta }
       } = await this.$http.get('categories', { params: { type: 2 } })
-      if (meta.status !== 200) return this.$msg.error(meta.msg)
+      if (meta.status !== 200) return this.$message.error(meta.msg)
       // console.log(data)
 
       this.parentCateList = data
@@ -236,8 +236,8 @@ export default {
           data: { meta }
         } = await this.$http.post('categories', this.addForm)
 
-        if (meta.status !== 201) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 201) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.addDialogVisible = false
         this.getList()
       })
@@ -264,8 +264,8 @@ export default {
           data: { meta }
         } = await this.$http.put('categories/' + this.editForm.cat_id, this.editForm)
 
-        if (meta.status !== 200) return this.$msg.error(meta.msg)
-        this.$msg.success(meta.msg)
+        if (meta.status !== 200) return this.$message.error(meta.msg)
+        this.$message.success(meta.msg)
         this.editDialogVisible = false
         this.getList()
       })
@@ -278,14 +278,14 @@ export default {
       })
         .then(() => {
           this.$http.delete('categories/' + id).then(({ data: { meta } }) => {
-            if (meta.status !== 200) return this.$msg.error(meta.msg)
-            this.$msg.success(meta.msg)
+            if (meta.status !== 200) return this.$message.error(meta.msg)
+            this.$message.success(meta.msg)
             // this.queryInfo.pagenum = 1
             this.getList()
           })
         })
         .catch(() => {
-          this.$msg({
+          this.$message({
             type: 'info',
             message: '已取消删除'
           })
