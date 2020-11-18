@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<style lang="">
+@font-face {
+  font-family: 'iconfont';  /* project id 1736770 */
+  src: url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.eot');
+  src: url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1736770_5voexqa7y1m.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +34,7 @@
 </head>
 
 <body>
+  <i class="iconfont">&#xe60c;</i>
   <div class="box">
     <div class="container">
       fsdf
@@ -53,37 +70,7 @@
   res = selfDefine(object, 'name')
   console.log(res);
 
-  obj1 = {
-    arr: [{
-        name: 'tagno'
-      },
-      {
-        name: 'ngota'
-      }
-    ],
-    age: 12,
-    hobby: {
-      a: '11',
-      b: '22'
-    }
-  }
 
-  const obj2 = obj1
-  const obj3 = {
-    ...obj1
-  }
-  const obj4 = JSON.parse(JSON.stringify(obj1))
-
-  obj1.arr[0].name = 'ngota'
-  obj1.age = 25
-  obj1.hobby.a = '33'
-  console.log("obj1", obj1)
-
-  console.log("=", obj2)
-
-  console.log("...", obj3)
-
-  console.log("json", obj4)
 </script>
 
 </html>

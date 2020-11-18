@@ -66,7 +66,6 @@ export default {
         res.then(data => console.log(data.data))
         // console.log(this)
       }) */
-
       this.$refs.loginForm.validate(async (valid, obj) => {
         if (!valid) return false
         // 解构别名
@@ -80,6 +79,18 @@ export default {
           window.sessionStorage.setItem('token', data.token)
           this.$router.push('/home')
         }
+
+        // this.$http.post('login', this.loginForm).then(res => {
+        //   console.log(res)
+
+        //   if (res.data.meta.status !== 200) return this.$message.error(res.data.meta.msg)
+        //   else {
+        //     this.$message.success(res.data.meta.msg)
+        //     window.sessionStorage.setItem('token', res.data.data.token)
+        //     this.$router.push('/home')
+        //   }
+        // })
+
         // else return console.log(res.meta.msg)
       })
     }

@@ -157,3 +157,36 @@ Vue.prototype.$http = axios
     * [配置别名](https://www.jianshu.com/p/e4716e5bc8bb) 
   * configurewebpack
   * '@babel/plugin-syntax-dynamic-import' 路由分组懒加载
+
+## 跨域访问
+```
+// 跨域访问
+  devServer: {
+    // disableHostCheck: true,
+    // host: '192.168.1.102',
+    // port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://tangoh.cn:8888',
+        ws: true,
+        // pathRewrite: { '^/api': '' },
+        changeOrigin: true,     // target是域名的话，需要这个参数，
+        // secure: false,          // 设置支持https协议的代理
+      }
+    }
+  },
+```
+
+## gzip压缩传输
+1. npm i comprossion -g
+2. const comprossion = require('comprossion')
+3. app.use(comprossion()) 在加载静态资源前使用
+
+## pm2管理node
+1. npm i pm2 -g
+2. pm2 start [app.js] [name]
+3. pm2 ls
+4. pm2 restart [name/id]
+5. pm2 stop [name/id]
+6. pm2 delete [name/id]
+

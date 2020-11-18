@@ -22,7 +22,9 @@ Vue.config.productionTip = false
 
 Vue.component('treeTable', TreeTable)
 
-Vue.prototype.$baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+Vue.prototype.$baseURL = 'http://www.tangoh.cn:8888/api/private/v1/'
+// Vue.prototype.$baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// Vue.prototype.$baseURL = '/api/private/v1/'
 
 axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')
@@ -35,7 +37,9 @@ axios.interceptors.response.use(config => {
   return config
 })
 
-axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+axios.defaults.baseURL = 'http://www.tangoh.cn:8888/api/private/v1/'
+// axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// axios.defaults.baseURL = '/api/private/v1/'
 Vue.prototype.$http = axios
 
 Vue.filter('dateFormat', function (time) {

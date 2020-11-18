@@ -202,6 +202,7 @@ export default {
       } = await this.$http.get('roles')
       if (meta.status !== 200) return this.$message.error(meta.msg)
       this.list = data
+      console.log(this.list)
     },
     addFormHandle() {
       this.$refs.addFormRef.validate(async valid => {

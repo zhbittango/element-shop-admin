@@ -18,7 +18,7 @@
           :collapse="isCollapse"
           :collapse-transition="false"
           router
-          :default-active="activePath"
+          :default-active="activePath || $route.path"
         >
           <el-submenu
             :index="item.id + ''"

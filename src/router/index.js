@@ -16,7 +16,7 @@ import VueRouter from 'vue-router'
 
 const Login = () => import(/* webpackChunkName: "Login_Home_Welcome" */ 'components/Login')
 const Home = () => import(/* webpackChunkName: "Login_Home_Welcome" */'components/Home')
-const Welcom = () => import(/* webpackChunkName: "Login_Home_Welcome" */'components/Welcom')
+// const Welcom = () => import(/* webpackChunkName: "Login_Home_Welcome" */'components/Welcom')
 
 const Users = () => import(/* webpackChunkName: "Users_Rights_Roles" */ 'components/user/Users')
 const Rights = () => import(/* webpackChunkName: "Users_Rights_Roles" */ 'components/power/Rights')
@@ -47,9 +47,9 @@ const routes = [
   {
     path: '/home',
     component: Home,
-    redirect: '/welcom',
+    redirect: '/users',
     children: [
-      { path: '/welcom', component: Welcom },
+      // { path: '/welcom', component: Welcom },
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
